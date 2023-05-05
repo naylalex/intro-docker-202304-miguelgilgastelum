@@ -1,0 +1,31 @@
+version: "3"
+services:
+  db:
+    build: 
+      context: ./db/
+      dockerfile: Dockerfile    
+    ports:
+      - 5432:5432      
+    networks:
+      - wordsmith
+  words:
+    build: 
+      context: ./words/
+      dockerfile: Dockerfile      
+    ports:
+      - 8080:8081
+    networks:
+      - wordsmith
+  web:
+    build:
+      context:  ./web/
+      dockerfile: Dockerfile
+    ports:
+      - 80:8082
+    networks:
+      - wordsmith
+networks:
+  wordsmith:
+    name: wordsmith
+
+
